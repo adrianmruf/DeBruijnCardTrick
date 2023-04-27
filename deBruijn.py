@@ -1,8 +1,29 @@
 import subprocess
 import os
 
+"""
+The trick has five audience members cut a deck of cards repeatedly and then take a card each.
+The mathematician then asks a few questions: “Who had porridge for breakfast?” “Who is holding
+a red card?” “Is anyone a Pisces?” “Who has a dog called Stanley?”. The answers to these
+questions are sufficient to allow the mathematician to name the card that each person is holding.
+This is a python script that
+	* Prints the order in which you have to arrange the cards before your performance
+	* takes the relevant information ("Who is holding a red card?") and prints the values of the
+	  cards the spectators are holding
+	* compiles a LaTeX beamer presentation whose title page displays the five cards the audience
+	  members are holding
+
+Have fun performing this trick!
+"""
+
 
 def nextFour(string,pop):
+	"""
+	Input: List of five {0,1} bits
+	Output: The input list extended by the next bit in a de Bruijn sequence (given by the irreducible
+			polynomial x**5 - x**2 - 1) and the first bit deleted (if pop is set to True) or not (if
+			pop is set to False)
+	"""
 	if (type(string) != list) or not(all((i==0)or(i==1)) for i in string):
 		print('Wrong input, please type in a five letter list of zeros and ones')
 	string.append((string[-5]+string[-3])%2)
@@ -11,26 +32,34 @@ def nextFour(string,pop):
 	return string
 
 def getDeBruijn(string):
+	"""
+	Input: Inital list of five {0,1} bits
+	Output: The whole (punctured) de Bruijn sequence starting from that position
+	"""
 	for n in range(0,26,1):
 		string = nextFour(string,False)
 		print(string)
 
-	# string.insert(0,0)
 
 def wholeDeBruijn(string):
+	"""
+	Input: Initial list of five {0,1} bits
+	Output: The order of the deck used in The de Bruijn Card Trick
+	"""
 	values = ''
-	for n in range(0,26,1):
-		string = nextFour(string,False)
-		print(string)
-		temp = copy(string[-5:-1])
-		values += IdentifySingle(temp)
+	for n in range(0,31,1):
+		values += IdentifySingle(string)
 		values += ', '
+		string = nextFour(string,True)
 
-	# string.insert(0,0)
 	print(values)
 
 
 def IdentifySingle(string):
+	"""
+	Input: List of five {0,1} bits
+	Output: The card this 5-letter substring of the de Bruijn sequence corresponds to
+	"""
 	if (type(string) != list) or (len(string)!=5) or not(all((i==0)or(i==1)) for i in string):
 		print('Wrong input, please type in a five letter list of zeros and ones')
 	cardValue = ''
@@ -59,6 +88,10 @@ def IdentifySingle(string):
 	return cardValue
 
 def IdentifyFive(string):
+	"""
+	Input: The list of five {0,1} bits you obtain from the spectators
+	Output: The values of the cards they are holding
+	"""
 	if (type(string) != list) or (len(string)!=5) or not(all((i==0)or(i==1)) for i in string):
 		print('Wrong input, please type in a five letter list of zeros and ones')
 	cards = ''
@@ -71,6 +104,10 @@ def IdentifyFive(string):
 
 
 def IdentifySingleToTex(string):
+	"""
+	Input: List of five {0,1} bits
+	Output: Latex code corresponding to the value of the card this 5-letter substring encodes
+	"""
 	if (type(string) != list) or (len(string)!=5) or not(all((i==0)or(i==1)) for i in string):
 		print('Wrong input, please type in a five letter list of zeros and ones')
 	cardValue = '\crd'
@@ -115,6 +152,10 @@ def IdentifySingleToTex(string):
 	return cardValue
 
 def IdentifyToTex(string):
+	"""
+	Input: The list of five {0,1} bits you obtain from the spectators
+	Output: Latex code corresponding to the values of the five cards the spectators are holding
+	"""
 	if (type(string) != list) or (len(string)!=5) or not(all((i==0)or(i==1)) for i in string):
 		print('Wrong input, please type in a five letter list of zeros and ones')
 	cards = ''
@@ -125,17 +166,26 @@ def IdentifyToTex(string):
 		cards += IdentifySingleToTex(string)
 	return cards
 
+
+
+
 if __name__ == "__main__":
+	print("Arrange your deck according to this order (of 31 cards):")
+	wholeDeBruijn([0,0,0,0,1])
+
+	### Modify this next line in accordance with the distribution of red (1) and black (0) cards the
+	### spectators are holding
 	string = [0,0,1,1,1]
-	# print(IdentifyFive(string))
-	
-	lan = IdentifyToTex(string)
 
-	# string.extend(string)
-	# for i in range(0,31,1):
-	# 	print(IdentifySingle(string[i:i+5]))
+	print("Those are the values of the cards the spectators are holding:")
+	temp = string.copy()
+	print(IdentifyFive(temp))
 
+	temp2 = string.copy()
+	lan = IdentifyToTex(temp2)
 
+	### This creates a LaTeX beamer presentation which has the cards the spectators are holding on the
+	### title page
 
 	with open("de_Bruijn.tex", "w") as tex_file:
 		tex_file.write(r"""\documentclass[10pt]{beamer}
