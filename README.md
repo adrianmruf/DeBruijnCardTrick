@@ -11,6 +11,7 @@ The trick has five audience members cut a deck of cards repeatedly and then take
 The mathematician then asks a few questions: “Who had porridge for breakfast?” “Who is holding
 a red card?” “Is anyone a Pisces?” “Who has a dog called Stanley?”. The answers to these
 questions are sufficient to allow the mathematician to name the card that each person is holding.
+
 This is a python script that
 * Prints the order in which you have to arrange the cards before your performance
 * takes the relevant information ("Who is holding a red card?") and prints the values of the cards the spectators are holding
