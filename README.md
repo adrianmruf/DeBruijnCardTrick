@@ -17,7 +17,7 @@ This is a python script that
 * takes the relevant information ("Who is holding a red card?") and prints the values of the cards the spectators are holding
 * compiles a LaTeX beamer presentation whose title page displays the five cards the audience members are holding
     
-Read more about the trick [here](https://golem.ph.utexas.edu/category/2015/01/mathematics_and_magic_the_de_b.html)
+Read more about the trick [here](https://golem.ph.utexas.edu/category/2015/01/mathematics_and_magic_the_de_b.html).
 
 Have fun performing this trick!
 
