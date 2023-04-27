@@ -2,7 +2,7 @@
 Readme
 =
 **Python script Here you find a python script which can be used in the for a performance of The de Bruijn Card Trick generating a LaTeX
-beamer presentation for the final reveal. **
+beamer presentation for the final reveal.**
 
 27.04.2023
 
