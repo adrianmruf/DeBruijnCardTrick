@@ -12,11 +12,9 @@ The mathematician then asks a few questions: “Who had porridge for breakfast?�
 a red card?” “Is anyone a Pisces?” “Who has a dog called Stanley?”. The answers to these
 questions are sufficient to allow the mathematician to name the card that each person is holding.
 This is a python script that
-	* Prints the order in which you have to arrange the cards before your performance
-	* takes the relevant information ("Who is holding a red card?") and prints the values of the
-	  cards the spectators are holding
-	* compiles a LaTeX beamer presentation whose title page displays the five cards the audience
-	  members are holding
+* Prints the order in which you have to arrange the cards before your performance
+* takes the relevant information ("Who is holding a red card?") and prints the values of the cards the spectators are holding
+* compiles a LaTeX beamer presentation whose title page displays the five cards the audience members are holding
     
 Read more about the trick [here](https://golem.ph.utexas.edu/category/2015/01/mathematics_and_magic_the_de_b.html)
 
